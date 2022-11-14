@@ -18,7 +18,7 @@ const Calendar = () => {
     const [selectedDate, setSelectedDate] = useState<string>('')
     const [selectOneDate, setSelectOneDate] = useState<boolean>(true)
     const [rangeDate, setRangeDate] = useState<boolean>()
-    const [arrayOfCalendar, setArrayOfCalendar] = useState<any>([]);
+    const [allDatePerMonth, setAllDatePerMonth] = useState<any>([]);
     const [selectMultipleDate, setSelectMultipleDate] = useState<minMaxDate>()
     const [firstClick, setFirstClick] = useState<boolean>(true)
     const getAllDays = (today: moment.Moment) => {
@@ -77,16 +77,16 @@ const Calendar = () => {
             calendar[item].days.map((el: string) => {
                 array.push(el)
             })
-            setArrayOfCalendar(array)
+            setAllDatePerMonth(array)
         })
     }, [calendar])
     useEffect(() => {
-        Object.keys(arrayOfCalendar).map((item: string) => {
-            if (arrayOfCalendar[item].format('DD/MM/YYYY') === lastClicked && lastClicked?.day) {
+        Object.keys(allDatePerMonth).map((item: string) => {
+            if (allDatePerMonth[item].format('DD/MM/YYYY') === lastClicked && lastClicked?.day) {
                 setisClicked(lastClicked?.index)
             }
         })
-    }, [arrayOfCalendar])
+    }, [allDatePerMonth])
     const dateNow = new Date();
     const goToPreviousMonth = () => {
         if (currentMonth === 1) {
@@ -167,10 +167,10 @@ const Calendar = () => {
                 </div>
                 <div className={'title'}>
                     {
-                        Object.keys(arrayOfCalendar.slice(0, 7)).map((el: string, index: number) => (
+                        Object.keys(allDatePerMonth.slice(0, 7)).map((el: string, index: number) => (
                             <span className={'spanTitle'} key={index.toString()}>
                              {
-                                 arrayOfCalendar[el].format('dd')
+                                 allDatePerMonth[el].format('dd')
                              }
                          </span>
 
@@ -181,10 +181,12 @@ const Calendar = () => {
                     selectOneDate &&
                     <div className={'calendar'}>
                         {
-                            Object.keys(arrayOfCalendar).map((el: string, index: number) => (
-                                <button disabled={moment(arrayOfCalendar[el]).isBefore(moment(dateNow))} key={index}
-                                        onClick={() => getDate(arrayOfCalendar[el], index.toString())}
-                                        className={`calendarDays  ${isClicked.toString() === index.toString()}`}> {arrayOfCalendar[el].format('DD')}</button>
+                            Object.keys(allDatePerMonth).map((el: string, index: number) => (
+                                <button disabled={moment(allDatePerMonth[el]).isBefore(moment(dateNow))} key={index}
+                                        onClick={() => getDate(allDatePerMonth[el], index.toString())}
+                                        className={`calendarDays  ${isClicked.toString() === index.toString()}`}>
+                                                   {allDatePerMonth[el].format('DD')}
+                                </button>
                             ))
                         }
                     </div>
@@ -193,10 +195,13 @@ const Calendar = () => {
                     rangeDate &&
                     <div className={'calendar'}>
                         {
-                            Object.keys(arrayOfCalendar).map((el: string, index: number) => (
-                                <button disabled={moment(arrayOfCalendar[el]).isBefore(moment(dateNow))} key={index}
-                                        onClick={() => getDateRange(arrayOfCalendar[el], index.toString())}
-                                        className={`calendarDays  ${isClicked.toString() === index.toString() || moment(arrayOfCalendar[el]).isBetween(moment(selectMultipleDate?.firstPick), moment(selectMultipleDate?.secondPick), null, '[]')}`}> {arrayOfCalendar[el].format('DD')}</button>
+                            Object.keys(allDatePerMonth).map((el: string, index: number) => (
+                                <button disabled={moment(allDatePerMonth[el]).isBefore(moment(dateNow))} key={index}
+                                        onClick={() => getDateRange(allDatePerMonth[el], index.toString())}
+                                        className={`calendarDays  ${isClicked.toString() === index.toString() || 
+                                        moment(allDatePerMonth[el]).isBetween(moment(selectMultipleDate?.firstPick), 
+                                        moment(selectMultipleDate?.secondPick), null, '[]')}`}>
+                                                  {allDatePerMonth[el].format('DD')}</button>
                             ))
                         }
                     </div>
