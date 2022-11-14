@@ -207,6 +207,8 @@ const Calendar = () => {
                     selectOneDate &&
                     <span className={'selectedDate'}>
                 {'SELECTED DATE IS:' + ' ' + selectedDate}
+
+
             </span>
                 }
                 <button className={'btn-type'} style={{backgroundColor: selectOneDate ? 'gray' : 'white'}}
@@ -222,7 +224,22 @@ const Calendar = () => {
                 }}>
                     select Multiple of dates
                 </button>
+
             </div>
+
+            {
+                rangeDate && selectMultipleDate?.firstPick && selectMultipleDate.secondPick &&
+                <div style={{display:'flex',flexDirection:'column'}}>
+                    <span className={'selectedDate'}>
+                {'FIRST DATE IS :' + ' ' + moment(selectMultipleDate.firstPick).format('DD/MM/YYYY')}
+                </span>
+                    <span  className={'selectedDate'} >
+                        {'LAST DATE IS :' + ' ' + moment(selectMultipleDate.secondPick).format('DD/MM/YYYY')}
+
+                </span>
+                </div>
+            }
+
         </div>
     )
 }
