@@ -1,0 +1,18 @@
+.calendarContain{
+  .calendar{
+    background-color: red;
+    width: 100vw;
+
+    height: 100vh;
+    .calendarDiv{
+      width: 50%;
+      background-color: red;
+      display: grid!important;
+      .calendarContain{
+        display: grid;
+      }
+    }
+  }
+
+
+}

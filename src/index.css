@@ -11,3 +11,125 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.days{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+
+}
+.goToStyle{
+    position: relative;
+    top: 8px;
+    font-weight: bold;
+    font-family: cursive;
+    cursor: pointer;
+}
+.calendarContain{
+    position: relative;
+    left: 30%;
+    top: 30%;
+  align-items: center;
+  width: 700px;
+  margin: 20px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    height: 500px;
+}
+.calendar{
+  /*background-color: white;*/
+  width: 600px;
+  display: grid;
+  padding: 20px;
+  margin: 50px;
+ border-radius: 20px;
+  gap: 10px;
+  align-self: center;
+  grid-template-columns: repeat(7,1fr);
+  align-items: center;
+  align-content: space-around;
+  align-self: center;
+    position: relative;
+    bottom: 100px;
+}
+
+.calendarDays{
+    width: 50px;
+    height: 50px;
+    border: unset;
+    background-color: white;
+    border-radius: 50px;
+    font-weight: 900;
+}
+.nexMonthDiv{
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50px;
+    align-items: center;
+}
+.spanTitle{
+    font-family: Arial;
+    font-weight: bold;
+}
+.title{
+    position: relative;
+    bottom: 40px;
+    background-color: white;
+    width: 600px;
+    display: grid;
+    padding: 20px;
+    margin:38px;
+    border-radius: 20px;
+    gap: 10px;
+    align-self: center;
+    grid-template-columns: repeat(7,1fr);
+    align-items: center;
+    align-content: space-around;
+    align-self: center;
+    color: dodgerblue;
+}
+.calendarDays.true{
+  background: #61dafb52;
+  cursor: pointer;
+}
+.selectedDate{
+    color: black;
+    font-weight: bold;
+}
+
+.calendarDays.true.false{
+  background: gray!important;
+}
+.btn-type{
+    border-radius: 15px;
+    color: black;
+    cursor: pointer;
+    text-transform: uppercase;
+    height: 50px;
+    width: 100px;
+    border: unset;
+    font-weight: bold;
+
+}
+@media all and (max-width: 768px) {
+
+    .calendarContain{
+        width: 92vw;
+        height: 414px;
+        position: unset;
+    }
+    .calendar{
+        width: 20vw;
+        padding: unset;
+    }
+    .title{
+        width: 25vw;
+        gap: 26px;
+        padding: 6px;
+        bottom: 52px;
+        margin: 53px;
+    }
+    .calendarDays{
+        width: 8vw;
+        height: 39px;
+    }
+
+}
